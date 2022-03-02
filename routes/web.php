@@ -21,4 +21,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+// Checking lectures
+Route::get('/animals', function(){
+    return "Swansea zoo has many animals";
+});
+
+Route::get('/animals/{name}', function($name){
+    return "Swansea zoo is home to $name and many others";
+});
+
 require __DIR__.'/auth.php';
