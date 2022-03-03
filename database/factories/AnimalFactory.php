@@ -22,6 +22,7 @@ class AnimalFactory extends Factory
         return [
             'name' => $this->faker->firstName(),
             'weight' => $this->faker->randomFloat(2, 150, 500),
+            'enclosure_id'  => Enclosure::factory(),
         ];
     }
 }
