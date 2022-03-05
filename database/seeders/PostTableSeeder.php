@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Keeper;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Post;
 
-class KeepersTableSeeder extends Seeder
+class PostTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,10 +15,6 @@ class KeepersTableSeeder extends Seeder
      */
     public function run()
     {
-        $k = new Keeper();
-        $k->name = "Lisa";
-        $k->save();
-        $k->animals()->attach(1);
-        $k->animals()->attach(23);
+        Post::factory()->count(10)->create();
     }
 }

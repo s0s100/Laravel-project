@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\EmergencyContact;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Comment;
 
-class EmergencyContactsTableSeeder extends Seeder
+class CommentTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,10 +15,6 @@ class EmergencyContactsTableSeeder extends Seeder
      */
     public function run()
     {
-        $e = new EmergencyContact();
-        $e->name = "Jon";
-        $e->phone_number = "07777 777999";
-        $e->animal_id = 1;
-        $e->save();
+        Comment::factory()->count(10)->create();
     }
 }

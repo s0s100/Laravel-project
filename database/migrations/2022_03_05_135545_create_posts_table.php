@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('emergency_contacts', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('phone_number');
-            $table->unsignedBigInteger('animal_id')->unique();
+            $table->unsignedBigInteger('user_id');
+            $table->longText('text');
             $table->timestamps();
+            // Photo link
 
-            // One to one
-            $table->foreign('animal_id')->references('id')->on('animals')
+            // One to many link
+            $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('cascade')->onUpdate('cascade');
         });
     }
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('emergency_contacts');
+        Schema::dropIfExists('posts');
     }
 };

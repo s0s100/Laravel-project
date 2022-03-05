@@ -13,17 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('animal_keeper', function (Blueprint $table) {
-            $table->primary(['animal_id','keeper_id']);
-            $table->unsignedBigInteger('animal_id');
-            $table->unsignedBigInteger('keeper_id');
+        Schema::create('friends', function (Blueprint $table) {
+            $table->primary(['user_id','friend_id']);
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('friend_id');
             $table->timestamps();
 
-            // Connects keepers and animals through id
-            $table->foreign('animal_id')->references('id')->on('animals') 
+            // Many to many connections
+            $table->foreign('user_id')->references('id')->on('users') 
             ->onDelete('cascade')->onUpdate('cascade');
 
-            $table->foreign('keeper_id')->references('id')->on('keepers') 
+            $table->foreign('friend_id')->references('id')->on('users') 
             ->onDelete('cascade')->onUpdate('cascade');
         });
     }
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('animal_keeper');
+        Schema::dropIfExists('friends');
     }
 };

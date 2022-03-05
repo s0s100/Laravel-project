@@ -4,9 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Enclosure;
 
-class EnclosuresTableSeeder extends Seeder
+class FriendTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +14,6 @@ class EnclosuresTableSeeder extends Seeder
      */
     public function run()
     {
-        $e = new Enclosure();
-        $e->name="Central Enclosure";
-        $e->save();
+        //
     }
 }
