@@ -20,11 +20,10 @@ return new class extends Migration
             $table->text('text');
             $table->timestamps();
 
-            // One to many link
+            // One to many relations
             $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('cascade')->onUpdate('cascade');
 
-            // One to many link
             $table->foreign('post_id')->references('id')->on('posts')
             ->onDelete('cascade')->onUpdate('cascade');
         });

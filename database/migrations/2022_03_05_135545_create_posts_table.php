@@ -18,9 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->longText('text');
             $table->timestamps();
-            // Photo link
 
-            // One to many link
+            // One to many
             $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('cascade')->onUpdate('cascade');
         });

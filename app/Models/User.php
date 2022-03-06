@@ -42,17 +42,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // Many to many
+    // Same as followers
     public function friends(){
         return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id');
     }
 
-    // Posts
+    // User posts
     public function posts(){
         return $this->hasMany(Post::class);
     }
 
-    // Comments
+    // User comments
     public function comments(){
         return $this->hasMany(Comment::class);
     }
