@@ -14,10 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // $num = 10;
         $this->call(UserTableSeeder::class);
-        // $this->call(FriendTableSeeder::class);
+        $this->call(FriendTableSeeder::class);
         $this->call(PostTableSeeder::class);
         $this->call(CommentTableSeeder::class);
-        
     }
 }

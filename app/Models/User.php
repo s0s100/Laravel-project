@@ -11,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -44,7 +44,7 @@ class User extends Authenticatable
 
     // Many to many
     public function friends(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id');
     }
 
     // Posts
