@@ -42,9 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // Same as followers
-    public function friends(){
+    // Who is following the user
+    public function following(){
         return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id');
+    }
+
+    // By who the user is followed
+    public function followers(){
+        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id');
     }
 
     // User posts
