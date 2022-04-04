@@ -20,7 +20,7 @@
                     <img src="{{asset('images/test_user_image.jpg')}}" class="img-circle" alt = "User pic">
                 </div>
                 <div class="row-sm-4" style="background-color:lavender;">
-                    <h1> User information: </h1>
+                    <h1> User information: </h1 >
                     <div>
                         @yield('content')
                     </div>

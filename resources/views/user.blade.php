@@ -1,5 +1,3 @@
-
-
 @extends('layouts.userview')
 
 @section('username', 'Mikhail Okrugov')
