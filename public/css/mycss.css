@@ -1,0 +1,16 @@
+.col-sm-4 {
+    background-color: antiquewhite ;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.col-sm-8 {
+    background-color: bisque ;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img {
+    max-width: 100px;
+    border: 5px;
+}

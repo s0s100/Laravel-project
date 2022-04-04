@@ -358,6 +358,8 @@ audio,
 iframe,
 embed,
 object {
+  width: 500;
+  height: auto;
   display: block; /* 1 */
   vertical-align: middle; /* 2 */
 }

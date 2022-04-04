@@ -21,13 +21,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-// Checking lectures
-Route::get('/animals', function(){
-    return "Swansea zoo has many animals";
+Route::get('/user/{id}', function($id) {
+    return view('user', ['id'=>$id]);
 });
 
-Route::get('/animals/{name}', function($name){
-    return "Swansea zoo is home to $name and many others";
+// It will be updated later on
+Route::middleware(['auth'])->group(function(){
+    Route::view('/admin','admin')->name('admin');
 });
 
 require __DIR__.'/auth.php';
