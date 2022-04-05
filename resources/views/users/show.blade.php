@@ -14,14 +14,16 @@
 <body>
     <h1>User list:</h1>
     <div class = "column">
-        @foreach($users as $user)
-            <div class="row-sm-4">
-                <img src="{{asset('images/test_user_image.jpg')}}" class="img-circle" alt = "User pic">
-                <b style="font-size: 20px">{{ $user->name }}</b>
-            </div>
-            {{-- @extends('layouts.userview_small')
-            @section('username', $user->name) --}}
-        @endforeach
+        @extends('layouts.userview')
+
+        @section('username', $user->name)
+        
+        @section('followers', count($user->followers))
+        @section('following', count($user->following))
+        
+        @section('content')
+            <p> Information about user </p>
+        @endsection
     </div>
 </body>
 </html>
