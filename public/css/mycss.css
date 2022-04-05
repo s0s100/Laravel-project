@@ -20,8 +20,29 @@
     background-color: aliceblue ;
 }
 
-.row-sm-2.comment{
+.row-sm-2.comment {
     background-color: blanchedalmond;
+}
+
+.row-sm-4.comment-info {
+    background-color: beige;
+}
+
+.row-sm-4.user-info {
+    background-color: beige;
+}
+
+.post {
+    background-color: beige; 
+}
+
+.comment {
+    background-color: bisque;
+}
+
+i {
+    font-size: 20px;
+    font: oblique;
 }
 
 div {
@@ -35,4 +56,8 @@ h {
 img {
     max-width: 100px;
     border: 5px;
+}
+
+.column.posts{
+    background-color: aliceblue; 
 }

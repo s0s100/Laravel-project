@@ -20,15 +20,15 @@
                     <h1>@yield('username')</h1>
                     <img src="{{ asset('images/test_user_image.jpg') }}" class="img-circle" alt="User pic">
                 </div>
-                <div class="row-sm-4" style="background-color:lavender;">
-                    <h1> User information: </h1>
+                <div class="row-sm-4 user-info">
+                    <h2> User information: </h2>
                     <div>
                         @yield('content')
                     </div>
                     <a> Followers: @yield('followers') </a>
                     <a> Following: @yield('following') </a>
                 </div>
-                <div class="row-sm-4">
+                <div class="row-sm-4 comment-info">
                     <h2> Comments: </h2>
                     @foreach ($user->comments as $comment)
                         <div class="row-sm-2 comment">
@@ -43,13 +43,13 @@
             </div>
         </div>
         <div class="col-sm-8" colo>
-            <div class="column">
-                <h1> Posts </h1>
+            <div class="column posts">
+                <h1> Posts: </h1>
                 @foreach ($user->posts as $post)
-                    <div class="row-sm-4">
+                    <div class="row-sm-4 post">
                         <b> Created by: {{ $post->user->name }} </b>
                         <br>
-                        <a> {{ $post->text }} </a>
+                        <small> {{ $post->text }} </small>
                         <br>
                         <i> Comments: </i>
                         @foreach ($post->comments as $comment)
@@ -59,11 +59,23 @@
                                 <small> {{ $comment->text }} </small>
                             </div>
                         @endforeach
+                        <br>
+                        {{-- Here we create an input form --}}
+                        <form method="POST" action="{{route('comment.store')}}">
+                            @csrf
+                            <p>
+                                <input type="hidden" name="user_id" value="{{$user->id}}">
+                                <input type="hidden" name="post_id" value="{{$post->id}}">
+                                <input type="text" name="text">
+                                <input type="submit" value="Send">
+                            </p>
+                        </form>
                     </div>
                 @endforeach
             </div>
         </div>
     </div>
+    <a href="{{route('users.index')}}">Back</a>
 </body>
 
 </html>

@@ -16,7 +16,7 @@
     <div class = "column">
         @foreach($users as $user)
             <div class="row-sm-4">
-                <a href="{{route('animals.show', ['id'=>$user->id])}}" style="text-decoration: none">
+                <a href="{{route('users.show', ['id'=>$user->id])}}" style="text-decoration: none">
                     <img src="{{asset('images/test_user_image.jpg')}}" class="img-circle" alt = "User pic">
                 </a>
                 <a href="/users/{{$user->id}}">
