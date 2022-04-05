@@ -15,10 +15,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 // Shows current user web page
-Route::get('/users/{id}', [UserController::class, 'show']);
-// Route::get('/user/{id}', function($id) {
-//     return view('user', ['id'=>$id]);
-// });
+Route::get('/users/{id}', [UserController::class, 'show'])
+    ->name('animals.show');
 
 // Shows every possible user
 Route::get('/users', [UserController::class, 'index']);

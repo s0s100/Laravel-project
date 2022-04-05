@@ -16,11 +16,13 @@
     <div class = "column">
         @foreach($users as $user)
             <div class="row-sm-4">
-                <img src="{{asset('images/test_user_image.jpg')}}" class="img-circle" alt = "User pic">
-                <b style="font-size: 20px">{{ $user->name }}</b>
+                <a href="{{route('animals.show', ['id'=>$user->id])}}" style="text-decoration: none">
+                    <img src="{{asset('images/test_user_image.jpg')}}" class="img-circle" alt = "User pic">
+                </a>
+                <a href="/users/{{$user->id}}">
+                    <b style="font-size: 20px">{{ $user->name }}</b>
+                </a>
             </div>
-            {{-- @extends('layouts.userview_small')
-            @section('username', $user->name) --}}
         @endforeach
     </div>
 </body>
