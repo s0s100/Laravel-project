@@ -20,12 +20,14 @@ class PostTableSeeder extends Seeder
         $post->user_id = 1;
         $post->name = "NOT SURE!";
         $post->text = "I am not sure what should I say...";
+        $post->image_path = "abobus.jpg";
         $post->save();
 
         $post = new Post();
         $post->user_id = 1;
         $post->name = "No!";
         $post->text = "This is not what I want!";
+        $post->image_path = "Shrek.jpg";
         $post->save();
 
         Post::factory()->count(10)->create();

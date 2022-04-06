@@ -23,6 +23,7 @@ class PostFactory extends Factory
             'user_id' => $this->faker->numberBetween($min = 1, $max = $maxUserId),
             'name' => $this->faker->word($nb = 5, $asText = false),
             'text' => $this->faker->text(),
+            'image_path' => $this->faker->image('public/images/posts', 500, 500, null, false),
         ];
     }
 }

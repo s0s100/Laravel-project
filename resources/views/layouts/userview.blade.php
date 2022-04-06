@@ -18,7 +18,8 @@
             <div class="column">
                 <div class="row-sm-4">
                     <h1>@yield('username')</h1>
-                    <img src="{{ URL::to('/')}}/images/{{$user->image_path}}" class="img-circle" alt="User pic">
+                    <img src="{{ URL::to('/') }}/images/avatars/{{ $user->image_path }}" class="img-circle avatar"
+                        alt="User pic">
                 </div>
                 <div class="row-sm-4 user-info">
                     <h2> User information: </h2>
@@ -34,7 +35,7 @@
                         <div class="row-sm-2 comment">
                             <b> Created by: {{ $comment->user->name }} </b>
                             <br>
-                            <b> Under the post of: {{$comment->post->user->name}} </b>
+                            <b> Under the post of: {{ $comment->post->user->name }} </b>
                             <br>
                             <small> {{ $comment->text }} </small>
                         </div>
@@ -47,9 +48,11 @@
                 <h1> Posts: </h1>
                 @foreach ($user->posts as $post)
                     <div class="row-sm-4 post">
+                        <img src="{{ URL::to('/') }}/images/posts/{{ $post->image_path }}" class="post_image"
+                            alt="Post pic">
                         <b> Created by: {{ $post->user->name }} </b>
                         <br>
-                        <b> {{$post->name}} </b>
+                        <b> {{ $post->name }} </b>
                         <br>
                         <small> {{ $post->text }} </small>
                         <br>
@@ -63,11 +66,11 @@
                         @endforeach
                         <br>
                         {{-- Here we create an input form --}}
-                        <form method="POST" action="{{route('comment.store')}}">
+                        <form method="POST" action="{{ route('comment.store') }}">
                             @csrf
                             <p>
-                                <input type="hidden" name="user_id" value="{{$user->id}}">
-                                <input type="hidden" name="post_id" value="{{$post->id}}">
+                                <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                <input type="hidden" name="post_id" value="{{ $post->id }}">
                                 <input type="text" name="text">
                                 <input type="submit" value="Send">
                             </p>
@@ -77,7 +80,7 @@
             </div>
         </div>
     </div>
-    <a href="{{route('users.index')}}">Back</a>
+    <a href="{{ route('users.index') }}">Back</a>
 </body>
 
 </html>
