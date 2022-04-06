@@ -30,6 +30,12 @@ class PostTableSeeder extends Seeder
         $post->image_path = "Shrek.jpg";
         $post->save();
 
+        $post = new Post();
+        $post->user_id = 1;
+        $post->name = "No image post";
+        $post->text = "Really! No image!";
+        $post->save();
+
         Post::factory()->count(10)->create();
     }
 }

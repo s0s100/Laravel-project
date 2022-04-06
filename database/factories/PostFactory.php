@@ -19,11 +19,19 @@ class PostFactory extends Factory
     {
         $maxUserId = User::all()->count();
 
+        $rng = rand(0, 1) == 1;
+        $result_path;
+        if ($rng) {
+            $result_path = $this->faker->image('public/images/posts', 500, 500, null, false);
+        } else {
+            $result_path = NULL;
+        }
+
         return [
             'user_id' => $this->faker->numberBetween($min = 1, $max = $maxUserId),
             'name' => $this->faker->word($nb = 5, $asText = false),
             'text' => $this->faker->text(),
-            'image_path' => $this->faker->image('public/images/posts', 500, 500, null, false),
+            'image_path' => $result_path,
         ];
     }
 }

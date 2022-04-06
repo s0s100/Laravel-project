@@ -17,7 +17,11 @@
         @foreach($users as $user)
             <div class="row-sm-4">
                 <a href="{{route('users.show', ['id'=>$user->id])}}" style="text-decoration: none">
-                    <img src="images/avatars/{{$user->image_path}}" class="img-circle avatar" alt = "User pic">
+                    @if($user->image_path)
+                        <img src="images/avatars/{{$user->image_path}}" class="img-circle avatar" alt = "User pic">
+                    @else
+                        <img src="images/default_avatar.jpg" class="img-circle avatar" alt = "User pic">
+                    @endif
                 </a>
                 <a href="/users/{{$user->id}}">
                     <b style="font-size: 20px">{{ $user->name }}</b>

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->text('name');
             $table->longText('text');
-            $table->string('image_path');
+            $table->string('image_path')->nullable();
             $table->timestamps();
 
             // One to many

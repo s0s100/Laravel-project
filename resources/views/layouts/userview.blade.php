@@ -18,8 +18,15 @@
             <div class="column">
                 <div class="row-sm-4">
                     <h1>@yield('username')</h1>
-                    <img src="{{ URL::to('/') }}/images/avatars/{{ $user->image_path }}" class="img-circle avatar"
-                        alt="User pic">
+                    @if ($user->image_path)
+                        <img src="{{ URL::to('/') }}/images/avatars/{{ $user->image_path }}"
+                            class="img-circle avatar" alt="User pic">
+                    @else
+                        <img src="{{ URL::to('/') }}/images/default_avatar.jpg" class="img-circle avatar"
+                            alt="User pic">
+                    @endif
+
+
                 </div>
                 <div class="row-sm-4 user-info">
                     <h2> User information: </h2>
@@ -48,8 +55,10 @@
                 <h1> Posts: </h1>
                 @foreach ($user->posts as $post)
                     <div class="row-sm-4 post">
-                        <img src="{{ URL::to('/') }}/images/posts/{{ $post->image_path }}" class="post_image"
-                            alt="Post pic">
+                        @if ($post->image_path)
+                            <img src="{{ URL::to('/') }}/images/posts/{{ $post->image_path }}"
+                                class="post_image" alt="Post pic">
+                        @endif
                         <b> Created by: {{ $post->user->name }} </b>
                         <br>
                         <b> {{ $post->name }} </b>
