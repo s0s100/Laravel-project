@@ -13,7 +13,7 @@
 
 <body>
     <div class="row-sm-4">
-        <img src="{{asset('images/test_user_image.jpg')}}" class="img-circle" alt = "User pic">
+        <img src="{{asset('images/default_avatar.jpg')}}" class="img-circle" alt = "User pic">
         <a style="font-size: 20px"> @yield('username') </a>
     </div>
 </body>

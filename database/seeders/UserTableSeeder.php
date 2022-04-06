@@ -20,6 +20,7 @@ class UserTableSeeder extends Seeder
         $user->name = "Mikhail Okrugov";
         $user->description = "I like Minecraft, Chess and Piano :)";
         $user->email = "1916371@swansea.ac.uk";
+        $user->image_path = "MyAvatar.jpg";
         $user->password = "qwerqwer";
         $user->save();
 

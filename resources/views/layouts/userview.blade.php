@@ -18,7 +18,7 @@
             <div class="column">
                 <div class="row-sm-4">
                     <h1>@yield('username')</h1>
-                    <img src="{{ asset('images/test_user_image.jpg') }}" class="img-circle" alt="User pic">
+                    <img src="{{ URL::to('/')}}/images/{{$user->image_path}}" class="img-circle" alt="User pic">
                 </div>
                 <div class="row-sm-4 user-info">
                     <h2> User information: </h2>
