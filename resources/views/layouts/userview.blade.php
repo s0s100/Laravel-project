@@ -49,6 +49,8 @@
                     <div class="row-sm-4 post">
                         <b> Created by: {{ $post->user->name }} </b>
                         <br>
+                        <b> {{$post->name}} </b>
+                        <br>
                         <small> {{ $post->text }} </small>
                         <br>
                         <i> Comments: </i>

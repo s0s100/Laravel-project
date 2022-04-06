@@ -21,7 +21,7 @@
         @section('following', count($user->following))
         
         @section('content')
-            <p> Information about user </p>
+            <p> {{$user->description}} </p>
         @endsection
     </div>
 </body>

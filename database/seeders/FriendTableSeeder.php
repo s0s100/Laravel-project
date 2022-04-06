@@ -18,8 +18,21 @@ class FriendTableSeeder extends Seeder
     {
         $count = User::all()->count();
 
+        // Add my friends
+        for ($i = 2; $i < $count; $i+=2) {
+            $follower = new Friend();
+            $follower->user_id = 1;
+            $follower->friend_id = $i;
+            $follower->save();
+            
+            $follower = new Friend();
+            $follower->user_id = $i - 1;
+            $follower->friend_id = 1;
+            $follower->save();
+        }
+
         // Friend::factory()->count(10)->create();
-        for ($i = 1; $i < $count; $i++) {         
+        for ($i = 2; $i < $count; $i++) {         
             $rand = rand($min = 1, $max = $count);
 
             $newFollow = new Friend();

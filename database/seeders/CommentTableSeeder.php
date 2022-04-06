@@ -15,6 +15,31 @@ class CommentTableSeeder extends Seeder
      */
     public function run()
     {
+        // Add some comments to 3 different posts
+        $comment = new Comment();
+        $comment->user_id = 1;
+        $comment->post_id = 1;
+        $comment->text = "Totally not sure :(";
+        $comment->save();
+
+        $comment = new Comment();
+        $comment->user_id = 1;
+        $comment->post_id = 2;
+        $comment->text = "No...";
+        $comment->save();
+
+        $comment = new Comment();
+        $comment->user_id = 1;
+        $comment->post_id = 3;
+        $comment->text = "SMORC";
+        $comment->save();
+        
+        $comment = new Comment();
+        $comment->user_id = 1;
+        $comment->post_id = 3;
+        $comment->text = "U got raided dude!";
+        $comment->save();
+
         Comment::factory()->count(10)->create();
     }
 }

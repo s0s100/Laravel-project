@@ -15,6 +15,19 @@ class PostTableSeeder extends Seeder
      */
     public function run()
     {
+        // Add a few posts
+        $post = new Post();
+        $post->user_id = 1;
+        $post->name = "NOT SURE!";
+        $post->text = "I am not sure what should I say...";
+        $post->save();
+
+        $post = new Post();
+        $post->user_id = 1;
+        $post->name = "No!";
+        $post->text = "This is not what I want!";
+        $post->save();
+
         Post::factory()->count(10)->create();
     }
 }

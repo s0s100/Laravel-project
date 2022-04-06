@@ -49,7 +49,8 @@ class CommentController extends Controller
         $comment->user_id = $validatedData['user_id'];
         $comment->save();
 
-        return "Created new comment!";
+        session()->flash('message', 'Animal was created');
+        return redirect()->route('users.show', ['id'=>$comment->user_id]);
     }
 
     /**
