@@ -15,10 +15,9 @@
 
 <body>
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-4 affix sticky-top">
             <div class="column">
                 <div class="row-sm-4 text-center">
-
                     @if ($user->image_path)
                         <img src="{{ URL::to('/') }}/images/avatars/{{ $user->image_path }}"
                             class="img-circle main-avatar" alt="User pic">
@@ -35,39 +34,53 @@
                     <p> Followers: <b> @yield('followers') </b> Following: <b> @yield('following') </b> </p>
                 </div>
                 <div class="row-sm-4 text-center">
-                    <h2> <i class="fa-solid fa-comment"></i> User Comments </h2>
+                    <h3>
+                        <i class="fa-solid fa-comment"></i>
+                        User Comments
+                    </h3>
                     @foreach ($user->comments as $comment)
                         <div class="row-sm-2 comment">
-                            <i class="fa-solid fa-user"></i>
-                            <b> {{ $comment->user->name }} </b>
-                            <i class="fa-solid fa-signs-post"></i>
-                            <b> {{ $comment->post->user->name }} </b>
-                            <br>
                             <small> {{ $comment->text }} </small>
                         </div>
                     @endforeach
                 </div>
             </div>
         </div>
-        <div class="col-sm-8" colo>
-            <div class="column posts text-center">
-                <h1> <i class="fa-solid fa-signs-post"></i> Posts </h1>
+        <div class="col-sm-8 scrollit pull-right" colo>
+            <div class="column">
+                <h3 class=" text-center">
+                    <i class="fa-solid fa-signs-post"></i>
+                    User Posts
+                </h3>
+
                 @foreach ($user->posts as $post)
                     <div class="row-sm-4 post">
-                        @if ($post->image_path)
-                            <img src="{{ URL::to('/') }}/images/posts/{{ $post->image_path }}"
-                                class="post_image" alt="Post pic">
-                        @endif
-                        <i class="fa-solid fa-user"></i>
-                        <b>{{ $post->user->name }} </b>
-                        <br>
-                        <h5 style="margin-bottom: 0px"> {{ $post->name }} </h5>
-                        <small> {{ $post->text }} </small>
-                        <br>
-                        <h3> Comments: </h3>
+                        <div class="row-sm-4 postbox">
+                            <div class="column">
+                                <div class="row">
+                                    @if ($post->image_path)
+                                        <img src="{{ URL::to('/') }}/images/posts/{{ $post->image_path }}"
+                                            class="post_image" alt="Post pic">
+                                    @endif
+
+                                    @if ($post->user->image_path)
+                                        <img src="{{ URL::to('/') }}/images/avatars/{{ $user->image_path }}"
+                                            class="img-circle small-avatar" alt="User pic">
+                                    @else
+                                        <img src="{{ URL::to('/') }}/images/default_avatar.jpg"
+                                            class="img-circle small-avatar" alt="User pic">
+                                    @endif
+
+                                    <b>{{ $post->user->name }} </b>
+                                    <br>
+                                    <h5 style="margin-bottom: 0px"> {{ $post->name }} </h5>
+                                    <small> {{ $post->text }} </small>
+                                </div>
+                            </div>
+                        </div>
                         @foreach ($post->comments as $comment)
                             <div class="row-sm-2 comment">
-                                <b> Created by: {{ $comment->user->name }} </b>
+                                <h5 class="username"> {{ $comment->user->name }} </h5>
                                 <br>
                                 <small> {{ $comment->text }} </small>
                             </div>
