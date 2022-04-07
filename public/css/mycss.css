@@ -14,17 +14,25 @@ a {
     color: #ebecf3;
 }
 
-b {
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: medium;
-    color: #070707;
+small {
+    font-size: 15px;
+    color: rgb(0, 0, 0);
 }
 
-.col-sm-4 {
-    
+.postname {
+    margin-bottom: 0px;
+    padding-top: 15px;
+
+}
+
+.col-sm-4 {   
     margin-left: auto;
     margin-right: auto;
     border: 0px;
+}
+
+.row-sm-4 {
+    min-height: 100px;
 }
 
 .column {
@@ -44,7 +52,7 @@ b {
     padding: 10px;
     box-shadow: 2px 2px 4px #37394e;
     border-radius: 50px;
-    background-color: rgb(175, 202, 224);
+    background-color: rgba(59, 67, 73, 0.548);
 }
 
 .col-sm-8 {
@@ -105,6 +113,7 @@ img.post_image {
 
 .postbox {
     background-color: rgba(59, 67, 73, 0.548);
+    min-height: 120px;
 }
 
 form {

@@ -57,27 +57,60 @@
                     <div class="row-sm-4 post">
                         <div class="row-sm-4 postbox">
                             <div class="column">
+                                {{-- <div class="column">
                                 <div class="row">
+                                    <div class="col-sm-1">
+                                        @if ($post->image_path)
+                                            <img src="{{ URL::to('/') }}/images/posts/{{ $post->image_path }}"
+                                                class="post_image" alt="Post pic">
+                                        @endif
+                                    </div>
+                                    <div class="col-sm-3">
+                                        @if ($post->user->image_path)
+                                            <img src="{{ URL::to('/') }}/images/avatars/{{ $user->image_path }}"
+                                                class="img-circle small-avatar" alt="User pic">
+                                        @else
+                                            <img src="{{ URL::to('/') }}/images/default_avatar.jpg"
+                                                class="img-circle small-avatar" alt="User pic">
+                                        @endif
+
+                                        <b>{{ $post->user->name }} </b>
+                                        <br>
+                                        <h5 style="margin-bottom: 0px"> {{ $post->name }} </h5>
+                                    </div>
+                                </div>
+                                <div class="row-sm-8">
+                                    <small> {{ $post->text }} </small>
+                                </div>
+                            </div> --}}
+                                <div class="row-sm-7">
                                     @if ($post->image_path)
                                         <img src="{{ URL::to('/') }}/images/posts/{{ $post->image_path }}"
-                                            class="post_image" alt="Post pic">
+                                            class="post_image pull-left" alt="Post pic">
                                     @endif
+                                    <h3 class = "postname">
+                                        {{ $post->name }}
+                                    </h3>
+                                    <small class="pull-left">
+                                        {{ $post->text }}
+                                    </small>
+                                </div>
+                                <div class="row-sm-1 pull-right pull-bottom">
+                                    <p class="username">
+                                        @if ($post->user->image_path)
+                                            <img src="{{ URL::to('/') }}/images/avatars/{{ $user->image_path }}"
+                                                class="img-circle small-avatar" alt="User pic">
+                                        @else
+                                            <img src="{{ URL::to('/') }}/images/default_avatar.jpg"
+                                                class="img-circle small-avatar" alt="User pic">
+                                        @endif
 
-                                    @if ($post->user->image_path)
-                                        <img src="{{ URL::to('/') }}/images/avatars/{{ $user->image_path }}"
-                                            class="img-circle small-avatar" alt="User pic">
-                                    @else
-                                        <img src="{{ URL::to('/') }}/images/default_avatar.jpg"
-                                            class="img-circle small-avatar" alt="User pic">
-                                    @endif
-
-                                    <b>{{ $post->user->name }} </b>
-                                    <br>
-                                    <h5 style="margin-bottom: 0px"> {{ $post->name }} </h5>
-                                    <small> {{ $post->text }} </small>
+                                        {{ $post->user->name }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
+
                         @foreach ($post->comments as $comment)
                             <div class="row-sm-2 comment">
                                 <h5 class="username"> {{ $comment->user->name }} </h5>
