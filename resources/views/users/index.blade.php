@@ -12,10 +12,10 @@
 </head>
 
 <body>
-    <h1>User list:</h1>
+    <h1 class = "text-center">User list:</h1>
     <div class = "column">
         @foreach($users as $user)
-            <div class="row-sm-4">
+            <div class="row-sm-4 userview">
                 <a href="{{route('users.show', ['id'=>$user->id])}}" style="text-decoration: none">
                     @if($user->image_path)
                         <img src="images/avatars/{{$user->image_path}}" class="img-circle avatar" alt = "User pic">
@@ -24,7 +24,7 @@
                     @endif
                 </a>
                 <a href="/users/{{$user->id}}">
-                    <b style="font-size: 20px">{{ $user->name }}</b>
+                    <b class="user-list"> {{ $user->name }}</b>
                 </a>
             </div>
         @endforeach

@@ -1,74 +1,96 @@
-.col-sm-4 {
-    background-color: aliceblue ;
-    margin-left: auto;
-    margin-right: auto;
-    
+body {
+    background-color: rgb(111, 134, 184);
 }
 
-/* .col-sm-8 {
-    background-color: antiquewhite ;
+h1, h2, h3, h4, h5 {
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 20px;
+    margin: 20px;
+    color: white;
+    text-shadow: 2px 2px 4px #353852;
+}
+
+a {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: medium;
+    color: #ebecf3;
+}
+
+b {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: medium;
+    color: #070707;
+}
+
+.col-sm-4 {
+    
     margin-left: auto;
     margin-right: auto;
-} */
+    border: 0px;
+}
+
+.column {
+    margin-top: 0px;
+    border-top: 0px;
+    padding-top: 0px;
+}
+
+.user-list {
+    text-align: center;
+    font-size: medium;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.userview {
+    opacity: 50;
+    padding: 10px;
+    box-shadow: 2px 2px 4px #37394e;
+    border-radius: 50px;
+    background-color: rgb(175, 202, 224);
+}
 
 .col-sm-8 {
     margin-left: auto;
     margin-right: auto;
 }
 
-.row-sm-4 {
-    background-color: aliceblue ;
-}
-
-.row-sm-2.comment {
-    background-color: blanchedalmond;
-}
-
-.row-sm-4.comment-info {
-    background-color: beige;
-}
-
-.row-sm-4.user-info {
-    background-color: beige;
-}
-
-.post {
-    background-color: beige; 
-}
-
-.comment {
-    background-color: bisque;
-}
-
-i {
-    font-size: 20px;
-    font: oblique;
-}
-
 div {
     margin: 20px;
 }
 
-h {
-    margin: 10 px;
-}
-
 img.avatar {
     /* max-width: 100px; */
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
     border: 10px;
-    overflow: hidden;
+}
 
+img.main-avatar {
+    width: 150px;
+    height: 150px;
+    border: 10px;
 }
 
 .post_image {
-    max-width: 150px;
+    border-style: inset;
+    box-sizing: 5px 5px;
+    border-radius: 6px;
+    max-width: 100px;
     max-height: 100px;
     border: 5px;
     overflow: hidden;
 }
 
-.column.posts{
-    background-color: aliceblue; 
+.comment {
+    margin: 5px;
+    box-sizing: content-box;
+    box-shadow: 1px 1px 0px 0px #23025773;
+}
+
+.post {
+    margin: 5px;
+    border-bottom: 15px;
+    padding-bottom: 15px;
+    box-sizing: content-box;
+    box-shadow: 2px 2px 1px 1px #18023d6c;
 }

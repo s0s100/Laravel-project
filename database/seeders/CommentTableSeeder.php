@@ -30,13 +30,13 @@ class CommentTableSeeder extends Seeder
 
         $comment = new Comment();
         $comment->user_id = 1;
-        $comment->post_id = 3;
+        $comment->post_id = 4;
         $comment->text = "SMORC";
         $comment->save();
         
         $comment = new Comment();
         $comment->user_id = 1;
-        $comment->post_id = 3;
+        $comment->post_id = 4;
         $comment->text = "U got raided dude!";
         $comment->save();
 
