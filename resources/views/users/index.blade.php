@@ -14,22 +14,11 @@
 </head>
 
 <body>
-    <h1 class="text-center"> <i class="fa-solid fa-users"></i> User list</h1>
     <div class="column">
-        @foreach ($users as $user)
-            <div class="row-sm-4 userview">
-                <a href="{{ route('users.show', ['id' => $user->id]) }}" style="text-decoration: none">
-                    @if ($user->image_path)
-                        <img src="images/avatars/{{ $user->image_path }}" class="img-circle avatar" alt="User pic">
-                    @else
-                        <img src="images/default_avatar.jpg" class="img-circle avatar" alt="User pic">
-                    @endif
-                </a>
-                <a href="/users/{{ $user->id }}">
-                    <b class="user-list"> {{ $user->name }}</b>
-                </a>
-            </div>
-        @endforeach
+        @extends('layouts.userlist')
+        @section('topbar')
+            <p> User list </p>
+        @endsection
     </div>
 </body>
 

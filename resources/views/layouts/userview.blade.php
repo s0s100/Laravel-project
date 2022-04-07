@@ -23,7 +23,7 @@
                         <img src="{{ URL::to('/') }}/images/avatars/{{ $user->image_path }}"
                             class="img-circle main-avatar" alt="User pic">
                     @else
-                        <img src="{{ URL::to('/') }}/images/default_avatar.jpg" class="img-circle avatar"
+                        <img src="{{ URL::to('/') }}/images/default_avatar.jpg" class="img-circle main-avatar"
                             alt="User pic">
                     @endif
                     <h1>@yield('username')</h1>
