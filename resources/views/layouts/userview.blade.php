@@ -35,15 +35,14 @@
                     <p> Followers: <b> @yield('followers') </b> Following: <b> @yield('following') </b> </p>
                 </div>
                 <div class="row-sm-4 text-center">
-                    <h2> User Comments: </h2>
+                    <h2> <i class="fa-solid fa-comment"></i> User Comments </h2>
                     @foreach ($user->comments as $comment)
-                        <div class="row-sm-2 comment">                            
+                        <div class="row-sm-2 comment">
                             <i class="fa-solid fa-user"></i>
                             <b> {{ $comment->user->name }} </b>
                             <i class="fa-solid fa-signs-post"></i>
                             <b> {{ $comment->post->user->name }} </b>
                             <br>
-                            <i class="fa-solid fa-comment"></i> 
                             <small> {{ $comment->text }} </small>
                         </div>
                     @endforeach
@@ -52,7 +51,7 @@
         </div>
         <div class="col-sm-8" colo>
             <div class="column posts text-center">
-                <h1 class=""> Posts: </h1>
+                <h1> <i class="fa-solid fa-signs-post"></i> Posts </h1>
                 @foreach ($user->posts as $post)
                     <div class="row-sm-4 post">
                         @if ($post->image_path)
@@ -89,7 +88,6 @@
             </div>
         </div>
     </div>
-    <a href="{{ route('users.index') }}">Back</a>
 </body>
 
 </html>
