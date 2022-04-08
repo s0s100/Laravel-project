@@ -29,6 +29,14 @@ Route::get('/users', [UserController::class, 'index'])
 Route::get('/users/{id}', [UserController::class, 'show'])
     ->name('users.show');
 
+// Show followers
+Route::get('followers/{id}', [UserController::class, 'followers'])
+    ->name('users.followers');
+
+// Show following profiles
+Route::get('following/{id}', [UserController::class, 'following'])
+    ->name('users.following');
+
 
 // Create new post
 // Route::get('/users/create-post', [UserController::class, 'create'])
@@ -42,10 +50,10 @@ Route::get('/users/{id}', [UserController::class, 'show'])
 
 
 // Post/Update/Delete
-Route::post('/users', [CommentController::class, 'store'])
+Route::post('/comments', [CommentController::class, 'store'])
     ->name('comment.store');
 
-Route::delete('/users/{id}', [CommentController::class, 'destroy'])
+Route::delete('/comments/{id}', [CommentController::class, 'destroy'])
     ->name('comment.destroy');
 
 require __DIR__.'/auth.php';

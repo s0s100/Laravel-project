@@ -31,7 +31,20 @@
                 </div>
                 <div class="row-sm-4 user-info text-center">
                     <p> @yield('content') </p>
-                    <p> Followers: <b> @yield('followers') </b> Following: <b> @yield('following') </b> </p>
+                    <p>
+                        <a href="{{ route('users.followers', ['id' => $user->id]) }}">
+                            Followers
+                        </a>
+                        <b>
+                            @yield('followers')
+                        </b>
+                        <a href="{{ route('users.following', ['id' => $user->id]) }}">
+                            Following
+                        </a>
+                        <b>
+                            @yield('following')
+                        </b>
+                    </p>
                 </div>
                 <div class="row-sm-4 text-center">
                     <h3>
@@ -90,7 +103,7 @@
                                 <h5 class="username"> {{ $comment->user->name }} </h5>
                                 {{-- Here we delete the comment --}}
                                 <form class="pull-right pull-bottom" method="POST"
-                                    action=" {{route('comment.destroy', [$comment->id]) }}">
+                                    action=" {{ route('comment.destroy', [$comment->id]) }}">
                                     @csrf
                                     @method('DELETE')
                                     <button class="delete-button" type="submit">&#10006;</button>

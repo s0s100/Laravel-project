@@ -84,4 +84,18 @@ class UserController extends Controller
     {
         //
     }
+
+    // Show user followers
+    public function followers($id) {
+        $users = User::findOrFail($id)->followers;
+
+        return view('users.followers', ['users'=>$users]);
+    }
+
+    // Show whom user follow
+    public function following($id) {
+        $users = User::findOrFail($id)->following;
+
+        return view('users.following', ['users'=>$users]);
+    }
 }

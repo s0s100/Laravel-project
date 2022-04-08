@@ -23,12 +23,13 @@
             <div class="row-sm-4 userview">
                 <a href="{{ route('users.show', ['id' => $user->id]) }}" style="text-decoration: none">
                     @if ($user->image_path)
-                        <img src="images/avatars/{{ $user->image_path }}" class="img-circle avatar" alt="User pic">
+                        {{-- <img src="images/avatars/{{ $user->image_path }}" class="img-circle avatar" alt="User pic"> --}}
+                        <img src="{{ URL::to('/') }}/images/avatars/{{ $user->image_path }}" class="img-circle avatar" alt="User pic">
                     @else
-                        <img src="images/default_avatar.jpg" class="img-circle avatar" alt="User pic">
+                        <img src="{{ URL::to('/') }}/images/default_avatar.jpg" class="img-circle avatar" alt="User pic">
                     @endif
                 </a>
-                <a href="/users/{{ $user->id }}">
+                <a href="{{ route('users.show', ['id' => $user->id]) }}">
                     <b class="user-list"> {{ $user->name }}</b>
                 </a>
             </div>
