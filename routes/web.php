@@ -7,16 +7,12 @@ use App\Http\Controllers\CommentController;
 use App\Models\User;
 
 // Default path
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [UserController::class, 'index']);
 
-// It was here before me :(
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-// It will be updated later on
 Route::middleware(['auth'])->group(function(){
     Route::view('/admin','admin')->name('admin');
 });
@@ -33,6 +29,7 @@ Route::get('/users', [UserController::class, 'index'])
 Route::get('/users/{id}', [UserController::class, 'show'])
     ->name('users.show');
 
+
 // Create new post
 // Route::get('/users/create-post', [UserController::class, 'create'])
 //     ->name('user.create');
@@ -43,7 +40,12 @@ Route::get('/users/{id}', [UserController::class, 'show'])
 // Route::post('/users', [PostController::class, 'store'])
 //     ->name('post.store');
 
+
+// Post/Update/Delete
 Route::post('/users', [CommentController::class, 'store'])
     ->name('comment.store');
+
+Route::delete('/users/{id}', [CommentController::class, 'destroy'])
+    ->name('comment.destroy');
 
 require __DIR__.'/auth.php';

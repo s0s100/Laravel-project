@@ -119,3 +119,9 @@ img.post_image {
 form {
     margin-left: 15px;
 }
+
+button.delete-button {
+    border: none;
+    display: contents;
+    color: red;
+}

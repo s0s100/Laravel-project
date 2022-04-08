@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validator;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Redirect;
 
 class CommentController extends Controller
 {
@@ -49,7 +50,6 @@ class CommentController extends Controller
         $comment->user_id = $validatedData['user_id'];
         $comment->save();
 
-        session()->flash('message', 'Animal was created');
         return redirect()->route('users.show', ['id'=>$comment->user_id]);
     }
 
@@ -93,8 +93,10 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $comment = Comment::findOrFail($request->id);
+        $comment->delete();
+        return Redirect::back();
     }
 }
