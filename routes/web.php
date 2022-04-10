@@ -59,9 +59,9 @@ Route::get('/secret', function (){
 
 // Post/Update/Delete
 Route::post('/comments', [CommentController::class, 'store'])
-    ->name('comment.store')->middleware(['auth']);;
+    ->name('comment.store')->middleware(['auth']);
 
 Route::delete('/comments/{id}', [CommentController::class, 'destroy'])
-    ->name('comment.destroy');
+    ->name('comment.destroy')->middleware(['auth']);
 
 require __DIR__.'/auth.php';
