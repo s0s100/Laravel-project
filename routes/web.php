@@ -40,6 +40,11 @@ Route::get('following/{id}', [UserController::class, 'following'])
 // AJAX test
 Route::get('comments', [CommentController::class, 'page']);
 
+// Authentication testing
+Route::get('/secret', function (){ 
+    return "secret";
+})->middleware(['auth']);
+
 
 // Create new post
 // Route::get('/users/create-post', [UserController::class, 'create'])
