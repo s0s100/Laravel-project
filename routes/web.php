@@ -37,6 +37,9 @@ Route::get('followers/{id}', [UserController::class, 'followers'])
 Route::get('following/{id}', [UserController::class, 'following'])
     ->name('users.following');
 
+// AJAX test
+Route::get('comments', [CommentController::class, 'page']);
+
 
 // Create new post
 // Route::get('/users/create-post', [UserController::class, 'create'])

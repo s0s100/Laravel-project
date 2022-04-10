@@ -99,4 +99,41 @@ class CommentController extends Controller
         $comment->delete();
         return Redirect::back();
     }
+
+    // AJAX test
+    public function page()
+    {
+        return view('comments.index');
+    }
+
+    public function apiIndex()
+    {   
+        $comments = Comment::all();
+        return $comments;
+    }
+
+    public function apiStore(Request $request)
+    {
+        // $validatedData = $request->validate([
+        //     'user_id' => 'required',
+        //     'post_id' => 'required',
+        //     'text' => 'required'
+        // ]);
+
+        // dd($validatedData);
+
+        // Add a new comment
+        $comment = new Comment;
+        $comment->text = $request['text'];
+        $comment->post_id = 1;
+        $comment->user_id = 1;
+        $comment->save();
+
+        // $comment->text = $validatedData['text'];
+        // $comment->post_id = $validatedData['post_id'];
+        // $comment->user_id = $validatedData['user_id'];
+
+
+        return $comment;
+    }
 }
