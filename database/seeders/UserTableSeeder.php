@@ -21,7 +21,7 @@ class UserTableSeeder extends Seeder
         $user->description = "I like Minecraft, Chess and Piano :)";
         $user->email = "1916371@swansea.ac.uk";
         $user->image_path = "MyAvatar.jpg";
-        $user->password = "qwerqwer";
+        $user->password = bcrypt("qwerqwer");
         $user->save();
 
         User::factory()->count(10)->create();

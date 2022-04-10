@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validator;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -43,14 +44,17 @@ class CommentController extends Controller
             'text' => 'required'
         ]);
 
+        $return_id = $validatedData['user_id'];
+
         // Add a new comment
         $comment = new Comment;
         $comment->text = $validatedData['text'];
         $comment->post_id = $validatedData['post_id'];
-        $comment->user_id = $validatedData['user_id'];
+        // $comment->user_id = $validatedData['user_id'];
+        $comment->user_id = Auth::user()->id;
         $comment->save();
 
-        return redirect()->route('users.show', ['id'=>$comment->user_id]);
+        return redirect()->route('users.show', ['id'=>$return_id]);
     }
 
     /**
