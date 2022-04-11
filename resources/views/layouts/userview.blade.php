@@ -103,14 +103,15 @@
                                 <h5 class="username"> {{ $comment->user->name }} </h5>
 
                                 {{-- Here we delete the comment --}}
-                                @if ((auth()->user()->id == $comment->user->id) 
-                                    || auth()->user()->id == $post->user_id)
-                                    <form class="pull-right pull-bottom" method="POST"
-                                        action=" {{ route('comment.destroy', [$comment->id]) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="delete-button" type="submit">&#10006;</button>
-                                    </form>
+                                @if (auth()->user())
+                                    @if (auth()->user()->id == $comment->user->id || auth()->user()->id == $post->user_id)
+                                        <form class="pull-right pull-bottom" method="POST"
+                                            action=" {{ route('comment.destroy', [$comment->id]) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="delete-button" type="submit">&#10006;</button>
+                                        </form>
+                                    @endif
                                 @endif
 
                                 <small> {{ $comment->text }} </small>
