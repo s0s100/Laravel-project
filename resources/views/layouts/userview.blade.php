@@ -47,7 +47,7 @@
                     </p>
                 </div>
                 <div class="row-sm-4 text-center">
-                    <h3>
+                    {{-- <h3>
                         <i class="fa-solid fa-comment"></i>
                         User Comments
                     </h3>
@@ -55,7 +55,7 @@
                         <div class="row-sm-2 comment">
                             <small> {{ $comment->text }} </small>
                         </div>
-                    @endforeach
+                    @endforeach --}}
                 </div>
             </div>
         </div>
