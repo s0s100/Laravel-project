@@ -14,7 +14,28 @@
 </head>
 
 <body>
-    <div class="row">
+    <div class="navbar">
+        @if (auth()->user())
+            <a href="{{ route('users.show', ['id' => auth()->user()->id]) }}">
+                User page
+            </a>
+        @else
+            <a href="{{ URL::to('/') }}/register">
+                Register
+            </a>
+        @endif
+
+        @if (auth()->user())
+            <a href="{{ route('logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Logout
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+        @endif
+    </div>
+    <div class="row main">
         <div class="col-sm-4 affix sticky-top">
             <div class="column">
                 <div class="row-sm-4 text-center">
@@ -47,15 +68,11 @@
                     </p>
                 </div>
                 <div class="row-sm-4 text-center">
-                    {{-- <h3>
-                        <i class="fa-solid fa-comment"></i>
-                        User Comments
-                    </h3>
-                    @foreach ($user->comments as $comment)
-                        <div class="row-sm-2 comment">
-                            <small> {{ $comment->text }} </small>
-                        </div>
-                    @endforeach --}}
+                    {{-- @if (auth()->user())
+                        <h1> rewq </h1>
+                        @else
+                        <h1> qwer</h1>
+                    @endif --}}
                 </div>
             </div>
         </div>
@@ -105,17 +122,18 @@
                                 {{-- Update comment --}}
                                 @if (auth()->user())
                                     @if (auth()->user()->id == $comment->user->id)
-                                        <button class="edit-button pull-right pull-bottom" onclick="openForm({{$comment->id}})">
+                                        <button class="edit-button pull-right pull-bottom"
+                                            onclick="openForm({{ $comment->id }})">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
-                                        
-                                        <div class="form-popup pull-right pull-bottom" id="myForm{{$comment->id}}">
+
+                                        <div class="form-popup pull-right pull-bottom" id="myForm{{ $comment->id }}">
                                             <form action=" {{ route('comment.edit', [$comment->id]) }}">
                                                 <input type="text" name="text" required>
                                                 <button type="submit">
                                                     Update
                                                 </button>
-                                                <button type="button" onclick="closeForm({{$comment->id}})">
+                                                <button type="button" onclick="closeForm({{ $comment->id }})">
                                                     Cancel editing
                                                 </button>
                                             </form>
@@ -127,10 +145,9 @@
                                             }
 
                                             function closeForm(id) {
-                                                document.getElementById("myForm"+id).style.display = "none";
+                                                document.getElementById("myForm" + id).style.display = "none";
                                             }
                                         </script>
-
                                     @endif
                                 @endif
 

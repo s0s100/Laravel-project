@@ -14,19 +14,43 @@
 </head>
 
 <body>
-    <h1 class="text-center">
-        <i class="fa-solid fa-users"></i>
-        @yield('topbar')
-    </h1>
-    <div class="column">
+    <div class="navbar">
+        @if (auth()->user())
+            <a href="{{ route('users.show', ['id' => auth()->user()->id]) }}">
+                User page
+            </a>
+        @else
+            <a href="{{ URL::to('/') }}/register">
+                Register
+            </a>
+        @endif
+
+        @if (auth()->user())
+            <a href="{{ route('logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Logout
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+        @endif
+    </div>
+
+    <div class="column main">
+        <h1 class="text-center main">
+            <i class="fa-solid fa-users"></i>
+            @yield('topbar')
+        </h1>
         @foreach ($users as $user)
             <div class="row-sm-4 userview">
                 <a href="{{ route('users.show', ['id' => $user->id]) }}" style="text-decoration: none">
                     @if ($user->image_path)
                         {{-- <img src="images/avatars/{{ $user->image_path }}" class="img-circle avatar" alt="User pic"> --}}
-                        <img src="{{ URL::to('/') }}/images/avatars/{{ $user->image_path }}" class="img-circle avatar" alt="User pic">
+                        <img src="{{ URL::to('/') }}/images/avatars/{{ $user->image_path }}"
+                            class="img-circle avatar" alt="User pic">
                     @else
-                        <img src="{{ URL::to('/') }}/images/default_avatar.jpg" class="img-circle avatar" alt="User pic">
+                        <img src="{{ URL::to('/') }}/images/default_avatar.jpg" class="img-circle avatar"
+                            alt="User pic">
                     @endif
                 </a>
                 <a href="{{ route('users.show', ['id' => $user->id]) }}">
