@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <h1>QWEQWEQWEQWE</h1>
+    <h1>Comments</h1>
     <div class="row-sm-2 comment">
         <i class="fa-solid fa-user"></i>
         <b> {{ $comment->user->name }} </b>

@@ -149,7 +149,7 @@ button.edit-button {
     top: 0px;
     width: 100%;
     height: 50px;
-    opacity: 80%;
+    z-index: 100;
 }
 
 
@@ -176,5 +176,5 @@ button.edit-button {
 /* Main content */
 
 .main {
-    margin-top: 60px;
+    margin-top: 75px;
 }
