@@ -25,6 +25,10 @@
             </a>
         @endif
 
+        <a href="{{ URL::to('/') }}/users">
+            Users
+        </a>
+
         @if (auth()->user())
             <a href="{{ route('logout') }}"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
