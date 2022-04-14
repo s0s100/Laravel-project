@@ -125,12 +125,12 @@
                                 {{-- Update comment --}}
                                 @if (auth()->user())
                                     @if (auth()->user()->id == $comment->user->id)
-                                        <button class="edit-button pull-right pull-bottom"
+                                        <button class="edit-button"
                                             onclick="openForm({{ $comment->id }})">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
 
-                                        <div class="form-popup pull-right pull-bottom" id="myForm{{ $comment->id }}">
+                                        <div class="form-popup" id="myForm{{ $comment->id }}">
                                             <form action=" {{ route('comment.edit', [$comment->id]) }}">
                                                 <input type="text" name="text" required>
                                                 <button type="submit">
