@@ -105,29 +105,29 @@
                                 {{-- Update comment --}}
                                 @if (auth()->user())
                                     @if (auth()->user()->id == $comment->user->id)
-                                        <button class="edit-button pull-right pull-bottom" onclick="openForm()">
+                                        <button class="edit-button pull-right pull-bottom" onclick="openForm({{$comment->id}})">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
                                         
-                                        <div class="form-popup pull-right pull-bottom" id="myForm">
+                                        <div class="form-popup pull-right pull-bottom" id="myForm{{$comment->id}}">
                                             <form action=" {{ route('comment.edit', [$comment->id]) }}">
                                                 <input type="text" name="text" required>
                                                 <button type="submit">
                                                     Update
                                                 </button>
-                                                <button type="button" onclick="closeForm()">
+                                                <button type="button" onclick="closeForm({{$comment->id}})">
                                                     Cancel editing
                                                 </button>
                                             </form>
                                         </div>
 
                                         <script>
-                                            function openForm() {
-                                                document.getElementById("myForm").style.display = "block";
+                                            function openForm(id) {
+                                                document.getElementById("myForm" + id).style.display = "block";
                                             }
 
-                                            function closeForm() {
-                                                document.getElementById("myForm").style.display = "none";
+                                            function closeForm(id) {
+                                                document.getElementById("myForm"+id).style.display = "none";
                                             }
                                         </script>
 
