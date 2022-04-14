@@ -146,19 +146,16 @@ class CommentController extends Controller
         //     'text' => 'required'
         // ]);
 
-        // dd($validatedData);
-
         // Add a new comment
         $comment = new Comment;
-        $comment->text = $request['text'];
-        $comment->post_id = 1;
-        $comment->user_id = 1;
-        $comment->save();
-
         // $comment->text = $validatedData['text'];
         // $comment->post_id = $validatedData['post_id'];
         // $comment->user_id = $validatedData['user_id'];
 
+        $comment->text = $request['text'];
+        $comment->post_id = $request['post_id'];
+        $comment->user_id = $request['user_id'];
+        $comment->save();
 
         return $comment;
     }

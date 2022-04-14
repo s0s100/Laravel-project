@@ -28,6 +28,10 @@
             Users
         </a>
 
+        <a href="{{ URL::to('/') }}/comments">
+            Comments
+        </a>
+
         @if (auth()->user())
             <a href="{{ route('logout') }}"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

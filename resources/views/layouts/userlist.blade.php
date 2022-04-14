@@ -28,6 +28,10 @@
         <a href="{{ URL::to('/') }}/users">
             Users
         </a>
+        
+        <a href="{{ URL::to('/') }}/comments">
+            Comments
+        </a>
 
         @if (auth()->user())
             <a href="{{ route('logout') }}"
