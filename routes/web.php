@@ -40,12 +40,6 @@ Route::get('following/{id}', [UserController::class, 'following'])
 // AJAX test
 Route::get('comments', [CommentController::class, 'page']);
 
-// Authentication testing
-Route::get('/secret', function (){ 
-    return "secret";
-})->middleware(['auth']);
-
-
 // Create new post
 // Route::get('/users/create-post', [UserController::class, 'create'])
 //     ->name('user.create');
@@ -63,5 +57,8 @@ Route::post('/comments', [CommentController::class, 'store'])
 
 Route::delete('/comments/{id}', [CommentController::class, 'destroy'])
     ->name('comment.destroy')->middleware(['auth']);
+
+Route::get('/comments/{id}', [CommentController::class, 'edit'])
+    ->name('comment.edit')->middleware(['auth']);
 
 require __DIR__.'/auth.php';

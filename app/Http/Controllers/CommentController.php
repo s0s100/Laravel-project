@@ -50,11 +50,10 @@ class CommentController extends Controller
         $comment = new Comment;
         $comment->text = $validatedData['text'];
         $comment->post_id = $validatedData['post_id'];
-        // $comment->user_id = $validatedData['user_id'];
         $comment->user_id = Auth::user()->id;
         $comment->save();
 
-        return redirect()->route('users.show', ['id'=>$return_id]);
+        return Redirect::back();
     }
 
     /**
@@ -74,9 +73,32 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'text' => 'required'
+        ]);
+
+        $comment = Comment::findOrFail($id);
+        $comment->text = $validatedData['text'];
+        $comment->save();
+
+        return Redirect::back();
+        
+
+        // $validatedData = $request->validate([
+        //     'user_id' => 'required',
+        //     'text' => 'required'
+        // ]);
+
+        // dd($validatedData);
+
+        // $return_id = $validatedData['user_id'];
+
+        // $comment = Comment::findOrFail($id);
+        // $comment->update(['text'->$validatedData['texts']]);
+
+        // return redirect()->route('users.show', ['id'=>$return_id]);
     }
 
     /**

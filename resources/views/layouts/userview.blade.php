@@ -102,6 +102,38 @@
                             <div class="row-sm-2 comment">
                                 <h5 class="username"> {{ $comment->user->name }} </h5>
 
+                                {{-- Update comment --}}
+                                @if (auth()->user())
+                                    @if (auth()->user()->id == $comment->user->id)
+                                        <button class="edit-button pull-right pull-bottom" onclick="openForm()">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                        
+                                        <div class="form-popup pull-right pull-bottom" id="myForm">
+                                            <form action=" {{ route('comment.edit', [$comment->id]) }}">
+                                                <input type="text" name="text" required>
+                                                <button type="submit">
+                                                    Update
+                                                </button>
+                                                <button type="button" onclick="closeForm()">
+                                                    Cancel editing
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                        <script>
+                                            function openForm() {
+                                                document.getElementById("myForm").style.display = "block";
+                                            }
+
+                                            function closeForm() {
+                                                document.getElementById("myForm").style.display = "none";
+                                            }
+                                        </script>
+
+                                    @endif
+                                @endif
+
                                 {{-- Here we delete the comment --}}
                                 @if (auth()->user())
                                     @if (auth()->user()->id == $comment->user->id || auth()->user()->id == $post->user_id)
@@ -114,11 +146,12 @@
                                     @endif
                                 @endif
 
+                                {{-- Comment content --}}
                                 <small> {{ $comment->text }} </small>
+
                             </div>
                         @endforeach
                         <br>
-                        {{-- Here we create an input form --}}
                         <form method="POST" action="{{ route('comment.store') }}">
                             @csrf
                             <p>
