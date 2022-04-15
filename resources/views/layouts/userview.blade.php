@@ -74,12 +74,45 @@
                         </b>
                     </p>
                 </div>
+
+                {{-- Follow functionality --}}
+
                 <div class="row-sm-4 text-center">
-                    {{-- @if (auth()->user())
-                        <h1> rewq </h1>
-                        @else
-                        <h1> qwer</h1>
-                    @endif --}}
+                    @if (auth()->user())
+                        @if (auth()->user()->id != $user->id)
+                            @if (!auth()->user()->following->contains($user))
+                                <form action=" {{ route('friend.store') }}" method="POST">
+                                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                    @csrf
+                                    <button type="submit">
+                                        Follow
+                                    </button>
+                                </form>
+                                {{-- <input type="button" onclick="follow()" value="Unfollow" id="followButton"> --}}
+                            @else
+                                <form method="POST" action=" {{ route('friend.destroy', [$user->id]) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">
+                                        Unfollow
+                                    </button>
+                                </form>
+                                {{-- <input type="button" onclick="follow()" value="Follow" id="followButton"> --}}
+                            @endif
+                        @endif
+                    @endif
+
+                    {{-- <script>
+                        function follow() {
+                            if (document.getElementById("followButton").value == "Follow") {
+                                document.getElementById("followButton").value = "Unfollow";
+                            } else {
+                                document.getElementById("followButton").value = "Follow";
+                            }
+
+                        }
+                    </script> --}}
+
                 </div>
             </div>
         </div>
@@ -129,8 +162,7 @@
                                 {{-- Update comment --}}
                                 @if (auth()->user())
                                     @if (auth()->user()->id == $comment->user->id)
-                                        <button class="edit-button"
-                                            onclick="openForm({{ $comment->id }})">
+                                        <button class="edit-button" onclick="openForm({{ $comment->id }})">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
 

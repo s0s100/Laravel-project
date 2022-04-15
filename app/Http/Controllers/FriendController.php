@@ -8,7 +8,7 @@ use App\Models\Friend;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class FriendController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('users.index', ['users'=>$users]);
+        //
     }
 
     /**
@@ -39,7 +38,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'user_id' => 'required',
+        ]);
+
+        $friends = new Friend();
+        $friends->user_id = Auth::user()->id;
+        // $friends->friend_id = $followId;
+        $friends->friend_id = $validatedData['user_id'];
+        $friends->save();
+
+        return Redirect::back();
     }
 
     /**
@@ -50,8 +59,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::FindOrFail($id);
-        return view('users.show', ['user'=>$user]);
+        //
     }
 
     /**
@@ -85,20 +93,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        $userId = Auth::user()->id;
+        $friendship = Friend::where('user_id', $userId)->where('friend_id', $id);
+        $friendship->delete();
 
-    // Show user followers
-    public function followers($id) {
-        $users = User::findOrFail($id)->followers;
-
-        return view('users.followers', ['users'=>$users]);
-    }
-
-    // Show whom user follow
-    public function following($id) {
-        $users = User::findOrFail($id)->following;
-
-        return view('users.following', ['users'=>$users]);
+        return Redirect::back();
     }
 }

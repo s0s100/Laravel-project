@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FriendController;
 use App\Models\User;
 
 // Default path
@@ -60,5 +61,13 @@ Route::delete('/comments/{id}', [CommentController::class, 'destroy'])
 
 Route::get('/comments/{id}', [CommentController::class, 'edit'])
     ->name('comment.edit')->middleware(['auth']);
+
+// Friend add/remove
+Route::post('/friend', [FriendController::class, 'store'])
+    ->name('friend.store')->middleware(['auth']);
+
+Route::delete('/friend/{id}', [FriendController::class, 'destroy'])
+    ->name('friend.destroy')->middleware(['auth']);
+
 
 require __DIR__.'/auth.php';
