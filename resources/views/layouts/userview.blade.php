@@ -84,8 +84,8 @@
                                 <form action=" {{ route('friend.store') }}" method="POST">
                                     <input type="hidden" name="user_id" value="{{ $user->id }}">
                                     @csrf
-                                    <button type="submit">
-                                        Follow
+                                    <button class="follow-button" type="submit">
+                                        <h2> Follow </h2>
                                     </button>
                                 </form>
                                 {{-- <input type="button" onclick="follow()" value="Unfollow" id="followButton"> --}}
@@ -93,8 +93,8 @@
                                 <form method="POST" action=" {{ route('friend.destroy', [$user->id]) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit">
-                                        Unfollow
+                                    <button class="follow-button" type="submit">
+                                        <h2> Unfollow </h2>
                                     </button>
                                 </form>
                                 {{-- <input type="button" onclick="follow()" value="Follow" id="followButton"> --}}

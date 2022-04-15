@@ -136,6 +136,12 @@ button.edit-button {
     display: none;
 }
 
+button.follow-button {
+    border: none;
+    display: contents;
+    color: rgb(0, 0, 0);
+}
+
 
 /* The navigation bar */
 
