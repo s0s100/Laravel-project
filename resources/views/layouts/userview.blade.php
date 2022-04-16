@@ -141,7 +141,7 @@
                 @foreach ($user->posts as $post)
                     <div class="row-sm-4 post">
                         <div class="row-sm-4 postbox">
-                            
+
                             {{-- Post deletion --}}
                             @if (auth()->user())
                                 @if (auth()->user()->id == $post->user_id)
@@ -151,6 +151,41 @@
                                         @method('DELETE')
                                         <button class="delete-button" type="submit">&#10006;</button>
                                     </form>
+                                @endif
+                            @endif
+
+                            {{-- Update post --}}
+                            @if (auth()->user())
+                                @if (auth()->user()->id == $post->user_id)
+                                    <button class="edit-button" onclick="openForm2({{ $post->id }})">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+
+                                    <div class="form-popup" id="myForm2{{ $post->id }}">
+                                        <form action=" {{ route('post.update', [$post->id]) }}"
+                                            enctype="multipart/form-data"  method="POST">
+                                            @csrf
+                                            <input type="text" name="name" required>
+                                            <input type="text" name="text" required>
+                                            <input type="file" name="image" placeholder="Choose image" id="image">
+                                            <button type="submit">
+                                                Update
+                                            </button>
+                                            <button type="button" onclick="closeForm2({{ $post->id }})">
+                                                Cancel editing
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                    <script>
+                                        function openForm2(id) {
+                                            document.getElementById("myForm2" + id).style.display = "block";
+                                        }
+
+                                        function closeForm2(id) {
+                                            document.getElementById("myForm2" + id).style.display = "none";
+                                        }
+                                    </script>
                                 @endif
                             @endif
 

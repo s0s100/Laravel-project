@@ -93,7 +93,32 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'text' => 'required',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
+        ]);
+
+        $post = Post::findOrFail($id);
+        $post->name = $validatedData['name'];
+        $post->text = $validatedData['text'];
+        $post->user_id = Auth::user()->id;
+
+        // Delete old image
+        $imagePath = $post->image_path;
+        $deletePath = (public_path('/images/posts/') . $imagePath);
+        // unlink($deletePath);
+
+        // Image creation
+        $imageName = hash('sha256', $request->image . strval(time())) . '.png';
+        $request->file('image')->move(public_path('/images/posts/'), $imageName);
+        $post->image_path = $imageName;
+
+        $post->save();
+
+        return Redirect::back();
     }
 
     /**
@@ -106,7 +131,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($request->id);
         $post->delete();
-        
+
         return Redirect::back();
     }
 }

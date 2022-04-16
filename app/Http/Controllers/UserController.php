@@ -114,20 +114,9 @@ class UserController extends Controller
         $user = Auth::user();
         $imagePath = $user->image_path;
         if ($imagePath) {
-            // $deletePath = URL::to('/') . '/images/avatars/' . $imagePath;
-            // $deletePath =  'app/public/images/avatars/' . $imagePath;
             $deletePath = (public_path('/images/avatars/') . $imagePath);
-
-            // File::delete($deletePath);
-            // unlink($deletePath);
-            
-            // dd($deletePath);
-            // dd(public_path());
+            unlink($deletePath);;
         }
-
-        // Convert string to file
-        // $file = File($request->file('image'));
-
 
         // Upload new image and connect it to the user
         $name = hash('sha256', $request->image . strval(time())) . '.png';
