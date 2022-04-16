@@ -56,17 +56,17 @@
                     <b> User ID: </b> @{{ comment.user_id }}
                 </li>
             </ul>
-            
+
             @if (auth()->user())
                 <h3> New comment </h3>
                 <b> Comment text </b>
 
-                <input type="text" id="newCommentText" v-model="newCommentText">
+                <input type="text" id="newCommentText" v-model="newCommentText" minlength="3" maxlength="100">
 
                 <br>
                 <b> Post Id </b>
 
-                <input type="number" id="postId" v-model="postId">
+                <input type="number" id="postId" v-model="postId" min="1" max="10">
                 {{-- <input type="text" id="userId" v-model="userId" value="{{ auth()->user()->id }}"> --}}
                 <button @click="createComment"> Send </button>
             @endif
@@ -94,7 +94,7 @@
                                     text: this.newCommentText,
                                     post_id: this.postId,
                                     // user_id: this.userId,
-                                    user_id: {{auth()->user()->id}}
+                                    user_id: {{ auth()->user()->id }}
                                     // post_id: 1,
                                     // user_id: 1,
                                 })
@@ -114,6 +114,7 @@
                 Vue.createApp(Comment).mount('#comment');
             </script>
         </div>
+    </div>
 </body>
 
 </html>
