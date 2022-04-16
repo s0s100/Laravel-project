@@ -84,21 +84,6 @@ class CommentController extends Controller
         $comment->save();
 
         return Redirect::back();
-        
-
-        // $validatedData = $request->validate([
-        //     'user_id' => 'required',
-        //     'text' => 'required'
-        // ]);
-
-        // dd($validatedData);
-
-        // $return_id = $validatedData['user_id'];
-
-        // $comment = Comment::findOrFail($id);
-        // $comment->update(['text'->$validatedData['texts']]);
-
-        // return redirect()->route('users.show', ['id'=>$return_id]);
     }
 
     /**

@@ -122,7 +122,7 @@
                     <div class="row-sm-4 text-center">
                         @if (auth()->user())
                             @if (auth()->user()->id == $user->id)
-                                <a href="{{ route('posts.create.post') }}"> 
+                                <a href="{{ route('posts.create.post') }}">
                                     <h2> Create post </h2>
                                 </a>
                             @endif
@@ -141,6 +141,19 @@
                 @foreach ($user->posts as $post)
                     <div class="row-sm-4 post">
                         <div class="row-sm-4 postbox">
+                            
+                            {{-- Post deletion --}}
+                            @if (auth()->user())
+                                @if (auth()->user()->id == $post->user_id)
+                                    <form class="pull-right pull-top" method="POST"
+                                        action=" {{ route('post.destroy', [$post->id]) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="delete-button" type="submit">&#10006;</button>
+                                    </form>
+                                @endif
+                            @endif
+
                             <div class="column">
                                 <div class="row-sm-7">
                                     @if ($post->image_path)

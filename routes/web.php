@@ -62,12 +62,15 @@ Route::delete('/friend/{id}', [FriendController::class, 'destroy'])
 Route::post('/users/upload-avatar', [UserController::class, 'uploadAvatar']) 
     ->name('avatar.upload');
 
-// Create post
+// Post create/delete/update
 Route::get('/posts/createpost', function() { 
     return view('posts/createpost');
 }) ->name('posts.create.post')->middleware(['auth']);
 
 Route::post('/posts/store', [PostController::class, 'store'])
  ->name('post.store')->middleware(['auth']);
+
+Route::delete('/posts/{id}', [PostController::class, 'destroy'])
+    ->name('post.destroy')->middleware(['auth']);
 
 require __DIR__.'/auth.php';
