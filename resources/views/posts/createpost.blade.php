@@ -42,7 +42,19 @@
             </form>
         @endif
     </div>
-    <div class="main">
-        <h1> Create that post!</h1>
+    <div class="main text-center">
+        <h1> Creating new post</h1>
+        <form action="{{ route('post.store') }}" id="modal_form_id" method="POST" enctype="multipart/form-data">
+            @csrf
+            <h5> Write post name </h5>
+            <input type="text" name="name">
+            <h5> Write post text </h5>
+            <input type="text" name="text">
+            <h5> Upload post image </h5>
+            <input type="file" name="image" placeholder="Choose image" id="image">
+            <button type="submit" class="user-button">
+                <h3> Create </h3>
+            </button>
+        </form>
     </div>
 </body>
