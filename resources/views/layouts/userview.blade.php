@@ -118,6 +118,16 @@
                             @endif
                         @endif
                     </div>
+
+                    <div class="row-sm-4 text-center">
+                        @if (auth()->user())
+                            @if (auth()->user()->id == $user->id)
+                                <a href="{{ route('posts.create.post') }}"> 
+                                    <h2> Create post </h2>
+                                </a>
+                            @endif
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

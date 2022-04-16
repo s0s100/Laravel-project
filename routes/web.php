@@ -38,15 +38,8 @@ Route::get('followers/{id}', [UserController::class, 'followers'])
 Route::get('following/{id}', [UserController::class, 'following'])
     ->name('users.following');
 
-// AJAX test
+// AJAX
 Route::get('comments', [CommentController::class, 'page']);
-
-// Create new post
-// Route::get('/users/create-post', [UserController::class, 'create'])
-//     ->name('user.create');
-
-// Route::post('/users', [UserController::class, 'store'])
-//     ->name('user.store');
 
 // Post/Update/Delete
 Route::post('/comments', [CommentController::class, 'store'])
@@ -66,7 +59,12 @@ Route::delete('/friend/{id}', [FriendController::class, 'destroy'])
     ->name('friend.destroy')->middleware(['auth']);
 
 // Image upload
-Route::post('/users/upload-avatar', [UserController::class, 'uploadAvatar']) 
+Route::post('/users/upload-avatar', [PostController::class, 'uploadAvatar']) 
     ->name('avatar.upload');
+
+// Create post
+Route::get('/posts/createpost', function() { 
+    return view('posts/createpost');
+}) ->name('posts.create.post')->middleware(['auth']);
 
 require __DIR__.'/auth.php';
