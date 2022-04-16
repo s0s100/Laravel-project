@@ -84,7 +84,7 @@
                                 <form action=" {{ route('friend.store') }}" method="POST">
                                     <input type="hidden" name="user_id" value="{{ $user->id }}">
                                     @csrf
-                                    <button class="follow-button" type="submit">
+                                    <button class="user-button" type="submit">
                                         <h2> Follow </h2>
                                     </button>
                                 </form>
@@ -93,7 +93,7 @@
                                 <form method="POST" action=" {{ route('friend.destroy', [$user->id]) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="follow-button" type="submit">
+                                    <button class="user-button" type="submit">
                                         <h2> Unfollow </h2>
                                     </button>
                                 </form>
@@ -102,17 +102,22 @@
                         @endif
                     @endif
 
-                    {{-- <script>
-                        function follow() {
-                            if (document.getElementById("followButton").value == "Follow") {
-                                document.getElementById("followButton").value = "Unfollow";
-                            } else {
-                                document.getElementById("followButton").value = "Follow";
-                            }
+                    <div class="row-sm-4 text-center">
+                        @if (auth()->user())
+                            @if (auth()->user()->id == $user->id)
+                                <form action="{{ route('avatar.upload') }}" enctype="multipart/form-data"
+                                    id="modal_form_id" method="POST">
+                                    @csrf
 
-                        }
-                    </script> --}}
-
+                                    <input type="file" name="image" placeholder="Choose image" id="image">
+                                    <br>
+                                    <button class="user-button" type="submit">
+                                        <h2> Upload new avatar </h2>
+                                    </button>
+                                </form>
+                            @endif
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

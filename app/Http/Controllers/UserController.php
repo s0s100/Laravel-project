@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Friend;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\Friend;
 
 class UserController extends Controller
 {
@@ -101,4 +104,55 @@ class UserController extends Controller
 
         return view('users.following', ['users'=>$users]);
     }
+
+    public function uploadAvatar(Request $request) {
+        $validatedData = $request->validate([
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+
+        // Delete old image
+        $user = Auth::user();
+        $imagePath = $user->image_path;
+        if ($imagePath) {
+            // $deletePath = URL::to('/') . '/images/avatars/' . $imagePath;
+            // $deletePath =  'app/public/images/avatars/' . $imagePath;
+            $deletePath = (public_path('/images/avatars/') . $imagePath);
+
+            // File::delete($deletePath);
+            // unlink($deletePath);
+            
+            // dd($deletePath);
+            // dd(public_path());
+        }
+
+        // Convert string to file
+        // $file = File($request->file('image'));
+
+
+        // Upload new image and connect it to the user
+        $name = hash('sha256', $request->image . strval(time())) . '.png';
+        $request->file('image')->move(public_path('/images/avatars/'), $name);
+        $user->image_path = ($name);
+        $user->save();
+
+        return Redirect::back();
+    }
 }
+
+// $rng = rand(0, 1) == 1;
+// $result_path;
+// if ($rng) {
+//     $result_path = $this->faker->image('public/images/avatars', 500, 500, null, false);
+// } else {
+//     $result_path = NULL;
+// }
+
+// return [
+//     'name' => $this->faker->name(),
+//     'description' => $this->faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+//     'email' => $this->faker->unique()->safeEmail(),
+//     'email_verified_at' => now(),
+//     'image_path' => $result_path,
+//     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+//     'remember_token' => Str::random(10),
+// ];

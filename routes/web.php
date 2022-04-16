@@ -48,10 +48,6 @@ Route::get('comments', [CommentController::class, 'page']);
 // Route::post('/users', [UserController::class, 'store'])
 //     ->name('user.store');
 
-// Route::post('/users', [PostController::class, 'store'])
-//     ->name('post.store');
-
-
 // Post/Update/Delete
 Route::post('/comments', [CommentController::class, 'store'])
     ->name('comment.store')->middleware(['auth']);
@@ -69,5 +65,8 @@ Route::post('/friend', [FriendController::class, 'store'])
 Route::delete('/friend/{id}', [FriendController::class, 'destroy'])
     ->name('friend.destroy')->middleware(['auth']);
 
+// Image upload
+Route::post('/users/upload-avatar', [UserController::class, 'uploadAvatar']) 
+    ->name('avatar.upload');
 
 require __DIR__.'/auth.php';

@@ -136,10 +136,9 @@ button.edit-button {
     display: none;
 }
 
-button.follow-button {
+button.user-button {
     border: none;
     display: contents;
-    color: rgb(0, 0, 0);
 }
 
 
