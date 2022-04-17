@@ -39,7 +39,8 @@ Route::get('following/{id}', [UserController::class, 'following'])
     ->name('users.following');
 
 // AJAX
-Route::get('comments', [CommentController::class, 'page']);
+Route::get('comments', [CommentController::class, 'page'])
+    ->middleware(['auth']);
 
 // Post/Update/Delete
 Route::post('/comments', [CommentController::class, 'store'])
