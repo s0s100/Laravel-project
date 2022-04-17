@@ -93,10 +93,7 @@
                             axios.post("{{ route('api.comments.store') }}", {
                                     text: this.newCommentText,
                                     post_id: this.postId,
-                                    // user_id: this.userId,
                                     user_id: {{ auth()->user()->id }}
-                                    // post_id: 1,
-                                    // user_id: 1,
                                 })
                                 .then(response => {
                                     this.comments.push(response.data);
