@@ -139,70 +139,27 @@
                 </h3>
 
                 @foreach ($user->posts as $post)
-                    <div class="row-sm-4 post">
-                        <div class="row-sm-4 postbox">
-
-                            {{-- Post deletion --}}
-                            @if (auth()->user())
-                                @if (auth()->user()->id == $post->user_id)
-                                    <form class="pull-right pull-top" method="POST"
-                                        action=" {{ route('post.destroy', [$post->id]) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="delete-button" type="submit">&#10006;</button>
-                                    </form>
-                                @endif
-                            @endif
-
-                            {{-- Update post --}}
-                            @if (auth()->user())
-                                @if (auth()->user()->id == $post->user_id)
-                                    <button class="edit-button" onclick="openForm2({{ $post->id }})">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </button>
-
-                                    <div class="form-popup" id="myForm2{{ $post->id }}">
-                                        <form action=" {{ route('post.update', [$post->id]) }}"
-                                            enctype="multipart/form-data"  method="POST">
-                                            @csrf
-                                            <input type="text" name="name" required>
-                                            <input type="text" name="text" required>
-                                            <input type="file" name="image" placeholder="Choose image" id="image">
-                                            <button type="submit">
-                                                Update
-                                            </button>
-                                            <button type="button" onclick="closeForm2({{ $post->id }})">
-                                                Cancel editing
-                                            </button>
-                                        </form>
-                                    </div>
-
-                                    <script>
-                                        function openForm2(id) {
-                                            document.getElementById("myForm2" + id).style.display = "block";
-                                        }
-
-                                        function closeForm2(id) {
-                                            document.getElementById("myForm2" + id).style.display = "none";
-                                        }
-                                    </script>
-                                @endif
-                            @endif
-
-                            <div class="column">
-                                <div class="row-sm-7">
+                    <div class="row-sm-8 post">
+                        <div class="row-sm-8 postbox">
+                            <div class="row">
+                                {{-- Image --}}
+                                <div class="col-sm-1">
                                     @if ($post->image_path)
                                         <img src="{{ URL::to('/') }}/images/posts/{{ $post->image_path }}"
                                             class="post_image pull-left" alt="Post pic">
                                     @endif
+                                </div>
+                                {{-- Post --}}
+                                <div class="col-sm-6">
                                     <h3 class="postname">
                                         {{ $post->name }}
                                     </h3>
-                                    <small class="pull-left">
+                                    <small>
                                         {{ $post->text }}
                                     </small>
                                 </div>
-                                <div class="row-sm-1 pull-right pull-bottom">
+                                {{-- Author + delete/edit --}}
+                                <div class="com-sm-1">
                                     <p class="username">
                                         @if ($post->user->image_path)
                                             <img src="{{ URL::to('/') }}/images/avatars/{{ $user->image_path }}"
@@ -214,7 +171,57 @@
 
                                         {{ $post->user->name }}
                                     </p>
+
                                 </div>
+                                <p class="pull-right pull-bottom">
+                                    {{-- Post deletion --}}
+                                    @if (auth()->user())
+                                        @if (auth()->user()->id == $post->user_id)
+                                            <form class="delete" method="POST"
+                                                action=" {{ route('post.destroy', [$post->id]) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="delete-button" type="submit">&#10006;</button>
+                                            </form>
+                                        @endif
+                                    @endif
+
+                                    {{-- Update post --}}
+                                    @if (auth()->user())
+                                        @if (auth()->user()->id == $post->user_id)
+                                            <button class="edit-button" onclick="openForm2({{ $post->id }})">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </button>
+
+                                            <div class="form-popup" id="myForm2{{ $post->id }}">
+                                                <form action=" {{ route('post.update', [$post->id]) }}"
+                                                    enctype="multipart/form-data" method="POST">
+                                                    @csrf
+                                                    <input type="text" name="name" required>
+                                                    <input type="text" name="text" required>
+                                                    <input type="file" name="image" placeholder="Choose image"
+                                                        id="image">
+                                                    <button type="submit">
+                                                        Update
+                                                    </button>
+                                                    <button type="button" onclick="closeForm2({{ $post->id }})">
+                                                        Cancel editing
+                                                    </button>
+                                                </form>
+                                            </div>
+
+                                            <script>
+                                                function openForm2(id) {
+                                                    document.getElementById("myForm2" + id).style.display = "block";
+                                                }
+
+                                                function closeForm2(id) {
+                                                    document.getElementById("myForm2" + id).style.display = "none";
+                                                }
+                                            </script>
+                                        @endif
+                                    @endif
+                                </p>
                             </div>
                         </div>
 
